@@ -21,7 +21,6 @@ public class SelectDevicesActivity extends AppCompatActivity {
     Spinner deviceIn;
     String[] arrayDevices = new String[4];
     String devices;
-    Bundle b;
 
     TextView devicesAvailablesTextView;
 
@@ -44,7 +43,6 @@ public class SelectDevicesActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectDevicesActivity.this, SelectFilesActivity.class);
                 intent.putExtra("deviceIn", deviceIn.getSelectedItem().toString());
                 intent.putExtra("deviceOut", deviceOut.getSelectedItem().toString());
-                intent.putExtras(b);
 
                 startActivity(intent);
             }
@@ -55,7 +53,6 @@ public class SelectDevicesActivity extends AppCompatActivity {
     private void getExtras()
     {
         this.devices = getIntent().getStringExtra("response");
-        this.b = getIntent().getExtras();
     }
 
     public void prepareDeviceSpinners(){

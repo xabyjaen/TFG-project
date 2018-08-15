@@ -11,7 +11,7 @@ import com.jcraft.jsch.Session;
 import java.io.Serializable;
 import java.util.Properties;
 
-public class ConectionSsh extends AsyncTask<Void, Void, Session> implements Parcelable {
+public class ConectionSsh extends AsyncTask<Void, Void, Session> {
 
     private Session session;
     private StringHelper stringHelper;
@@ -26,27 +26,6 @@ public class ConectionSsh extends AsyncTask<Void, Void, Session> implements Parc
     protected ConectionSsh(Parcel in) {
         session = getSession();
 
-    }
-
-    public static final Creator<ConectionSsh> CREATOR = new Creator<ConectionSsh>() {
-        @Override
-        public ConectionSsh createFromParcel(Parcel in) {
-            return new ConectionSsh(in);
-        }
-
-        @Override
-        public ConectionSsh[] newArray(int size) {
-            return new ConectionSsh[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
     }
 
     public interface AsyncSessionResponseInterface
@@ -66,6 +45,7 @@ public class ConectionSsh extends AsyncTask<Void, Void, Session> implements Parc
     {
         super.onPostExecute(session);
         delegate.connectionSshProcessFinish(session);
+
     }
 
     @Override

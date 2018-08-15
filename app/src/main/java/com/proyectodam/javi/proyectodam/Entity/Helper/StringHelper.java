@@ -39,13 +39,11 @@ public class StringHelper {
     public static final String CARPETA_USB_B = "/media/usbB";
     public static final String CREAR_DIRECTORIO = "sudo mkdir ";
     public static final String DIRECTORIO = "/media/usb";
-//    public static final String LISTAR_DISPOSITIVOS = "ls -h /dev/sd*";
     public static final String LISTAR_DISPOSITIVOS = "lsblk";
     public static final String DISPOSITIVO = "/dev/sd";
     public static final String MONTAR_MEMORIA = "sudo mount ";
-//    public static final String LISTAR_ARCHIVOS = "ls -shR ";
     public static final String LISTAR_ARCHIVOS = "find ";
-    public static final String CORTAR_CARPETA = "sudo mv /media/usb";
+    public static final String CORTAR_ARCHIVOS = "sudo mv ";
     public static final String DESMONTAR_MEMORIA = "sudo umount /media/usb";
 
 }

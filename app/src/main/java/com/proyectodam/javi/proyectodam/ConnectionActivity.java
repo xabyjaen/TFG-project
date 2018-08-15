@@ -53,8 +53,7 @@ public class ConnectionActivity extends AppCompatActivity implements ExecuteComm
     public void executeCommandProcessFinish(String response) {
         this.response = response;
         if(this.response.equals("ERROR")){
-//            Toast toast = Toast.makeText(this, this.response, Toast.LENGTH_SHORT);
-//            toast.show();
+
             connectionMessage.setText("No se pudo conectar con la Raspberry");
 
             return;
@@ -62,11 +61,7 @@ public class ConnectionActivity extends AppCompatActivity implements ExecuteComm
         if(!this.response.equals("")) {
             Intent intent = new Intent(ConnectionActivity.this, SelectDevicesActivity.class);
             intent.putExtra("response", response);
-
-            Bundle b = new Bundle();
-            b.putParcelable("connection", conectionSsh);
-            intent.putExtras(b);
-
+            this.conectionSsh.disconnectSession();
             startActivity(intent);
 
         }
