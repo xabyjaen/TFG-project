@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context="com.proyectodam.javi.proyectodam.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/buttonHistorial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonVolcado"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="41dp"
+            android:padding="20dp"
+            android:text="@string/btn_trip_"
+            android:background="@android:color/darker_gray"
+            android:onClick="historyAccess"
+            tools:ignore="UnknownId"
+            tools:layout_editor_absoluteX="125dp"
+            tools:layout_editor_absoluteY="84dp" />
+
+        <Button
+            android:id="@+id/buttonVolcado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="119dp"
+            android:background="@android:color/darker_gray"
+            android:padding="20dp"
+            android:text="@string/btn_transfer"
+            android:onClick="transferAccess"
+            tools:ignore="RtlCompat"
+            tools:layout_editor_absoluteX="132dp"
+            tools:layout_editor_absoluteY="192dp" />
+
+        <Button
+            android:id="@+id/prueba"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonHistorial"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="91dp"
+            android:text="prueba" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

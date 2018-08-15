@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_devices_available_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:textAlignment="center"
+        android:background="@color/colorPrimary"
+        android:text="DISPOSITIVOS DISPONIBLES" />
+
+    <TextView
+        android:id="@+id/devices_available_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/device_out_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20px"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:text="Dispositivo de Salida" />
+
+    <Spinner
+        android:id="@+id/device_out_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="100px" />
+
+    <TextView
+        android:id="@+id/device_in_text"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_margin="20px"
+        android:text="Dispositivo de Entrada" />
+
+    <Spinner
+        android:id="@+id/device_in_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="100px" />
+
+    <Button
+        android:id="@+id/continue_to_files_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="Continuar" />
+
+
+</LinearLayout>
