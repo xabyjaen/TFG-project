@@ -1,5 +1,8 @@
 package com.proyectodam.javi.proyectodam.Entity.Helper;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.jcraft.jsch.Channel;
@@ -15,22 +18,23 @@ public class ExecuteCommand extends AsyncTask<String, Void, String> {
     private String response = "";
     public AsyncResponseInterface delegate = null;
     public Channel channel;
+    private ProgressDialog progressDialog;
+    private Activity activity;
 
-    public ExecuteCommand(AsyncResponseInterface delegate, Session session, String command)
-    {
+    public ExecuteCommand(AsyncResponseInterface delegate, Session session, String command, Activity activity) {
         this.delegate = delegate;
         this.session = session;
         this.command = command;
+        this.activity = activity;
+        this.progressDialog = new ProgressDialog(activity);
     }
 
-    public interface AsyncResponseInterface
-    {
+    public interface AsyncResponseInterface {
         void executeCommandProcessFinish(String response);
     }
 
     @Override
-    protected String doInBackground(String... command)
-    {
+    protected String doInBackground(String... command) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         try {
@@ -49,12 +53,27 @@ public class ExecuteCommand extends AsyncTask<String, Void, String> {
     }
 
     @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog.setMessage("Cargando");
+        progressDialog.show();
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
+
+    }
+
+    @Override
     protected void onPostExecute(String response) {
         super.onPostExecute(response);
 
         delegate.executeCommandProcessFinish(response);
-
-        if (channel.isConnected()){
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+        if (channel.isConnected()) {
             channel.disconnect();
         }
 
@@ -70,11 +89,14 @@ public class ExecuteCommand extends AsyncTask<String, Void, String> {
         super.onCancelled();
         delegate.executeCommandProcessFinish(s);
 
-        if (channel.isConnected()){
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+        if (channel.isConnected()) {
             channel.disconnect();
         }
         //TODO
-//        channel.disconnect();
+        channel.disconnect();
 //        Toast toast = Toast.makeText(pruebaActivity,
 //                s, Toast.LENGTH_SHORT);
 //

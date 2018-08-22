@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:textAlignment="center"
     tools:context=".ConnectionActivity">
 
     <Button
         android:id="@+id/connectionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="148dp"
-        android:text="Conectar a Raspberry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center_vertical|center_horizontal|center"
+        android:text="Conectar a Raspberry" />
 
     <TextView
         android:id="@+id/connection_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_margin="30px"
+        android:textAlignment="center"
+        android:text="Para iniciar una transferencia de archivos conectese a la WIFI de la Raspberry y pulse 'CONECTAR A LA RASPBERRY'" />
+</LinearLayout>

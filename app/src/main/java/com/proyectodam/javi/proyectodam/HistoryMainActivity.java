@@ -43,11 +43,6 @@ public class HistoryMainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HistoryMainActivity.this, MapsActivity.class);
                 startActivity(intent);
-//                Fragment fragment;
-//                fragment = new TravelHistoryDataFragment();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.RelativeLayout, fragment);
-//                fragmentTransaction.commit();
             }
         });
     }

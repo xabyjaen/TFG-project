@@ -12,13 +12,6 @@
         android:layout_margin="20dp"
         android:gravity="center"
         android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/LugarText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nombre del lugar"
-            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -27,12 +20,14 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <fragment
-            android:id="@+id/fragmentAutocompletar"
-            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+        <EditText
+            android:id="@+id/folder_text_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:focusable="true"
+            android:text="Nombre de la carpeta" />
     </LinearLayout>
 
     <LinearLayout

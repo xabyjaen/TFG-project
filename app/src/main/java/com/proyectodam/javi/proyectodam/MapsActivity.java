@@ -13,8 +13,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.proyectodam.javi.proyectodam.Entity.Manager.ViajeManager;
-import com.proyectodam.javi.proyectodam.Entity.Viaje;
+import com.proyectodam.javi.proyectodam.Entity.Manager.PlaceManager;
+import com.proyectodam.javi.proyectodam.Entity.Place;
 
 import java.util.ArrayList;
 
@@ -58,25 +58,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        ViajeManager viajeManager = new ViajeManager();
-        ArrayList<String[]> ltnLng= viajeManager.findAllDataForMaps(this);
-        String [] lats = viajeManager.getLats(ltnLng);
-        String [] lngs = viajeManager.getLngs(ltnLng);
-        ArrayList<Viaje> viajes = new ArrayList<Viaje>();
-        viajes = viajeManager.getAllViajes(this);
+        PlaceManager placeManager = new PlaceManager();
+        ArrayList<String[]> ltnLng= placeManager.findAllDataForMaps(this);
+        String [] lats = placeManager.getLats(ltnLng);
+        String [] lngs = placeManager.getLngs(ltnLng);
+        ArrayList<Place> places = new ArrayList<Place>();
+        places = placeManager.getAllPLaces(this);
 
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
 
         for (int i = 0; i<ltnLng.size(); i++){
-
-            String lugar = viajes.get(i).getLugar();
-            String fecha = viajes.get(i).getFecha();
+//TODO
+            String lugar = places.get(i).getName();
+//            String fecha = places.get(i).get();
             float lat = Float.parseFloat(lats[i]);
             float lng = Float.parseFloat(lngs[i]);
             LatLng marker = new LatLng(lat, lng);
 
-            mMap.addMarker(new MarkerOptions().position(marker).title(lugar+": "+fecha));
+//            mMap.addMarker(new MarkerOptions().position(marker).title(lugar+": "+fecha));
         }
     }
 

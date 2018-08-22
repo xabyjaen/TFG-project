@@ -15,14 +15,16 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(StringHelper.CREAR_TABLA_VIAJES);
-        db.execSQL(StringHelper.CREAR_TABLA_ARCHIVOS);
+        db.execSQL(StringHelper.CREATE_TABLE_FOLDER);
+        db.execSQL(StringHelper.CREATE_TABLE_PLACE);
+        db.execSQL(StringHelper.CREATE_TABLE_TRAVEL);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int versionAntigua, int versionNueva) {
-        db.execSQL("DROP TABLE IF EXISTS viajes");
-        db.execSQL("DROP TABLE IF EXISTS archivos");
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + StringHelper.PLACE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + StringHelper.TRAVEL_TABLE );
+        db.execSQL("DROP TABLE IF EXISTS " + StringHelper.FOLDER_TABLE);
         onCreate(db);
     }
 }

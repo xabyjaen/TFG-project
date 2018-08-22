@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonHistorial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/buttonVolcado"
@@ -44,15 +43,6 @@
             tools:ignore="RtlCompat"
             tools:layout_editor_absoluteX="132dp"
             tools:layout_editor_absoluteY="192dp" />
-
-        <Button
-            android:id="@+id/prueba"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/buttonHistorial"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="91dp"
-            android:text="prueba" />
 
     </RelativeLayout>
 

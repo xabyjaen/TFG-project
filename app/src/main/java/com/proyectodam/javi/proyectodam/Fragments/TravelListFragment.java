@@ -2,7 +2,7 @@ package com.proyectodam.javi.proyectodam.Fragments;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.database.Cursor;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -12,14 +12,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.proyectodam.javi.proyectodam.Entity.Archivo;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.proyectodam.javi.proyectodam.Entity.Folder;
 import com.proyectodam.javi.proyectodam.Entity.ConexionSQLiteHelper;
 import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
-import com.proyectodam.javi.proyectodam.Entity.Manager.ArchivosManager;
-import com.proyectodam.javi.proyectodam.Entity.Viaje;
+import com.proyectodam.javi.proyectodam.Entity.Manager.FolderManager;
+import com.proyectodam.javi.proyectodam.Entity.Manager.PlaceManager;
+import com.proyectodam.javi.proyectodam.Entity.Manager.TravelManager;
+import com.proyectodam.javi.proyectodam.Entity.Place;
+import com.proyectodam.javi.proyectodam.Entity.Travel;
 import com.proyectodam.javi.proyectodam.R;
 
 import java.util.ArrayList;
@@ -28,8 +37,11 @@ public class TravelListFragment extends Fragment {
 
     ListView historyList;
     ArrayList<String> informationList;
-    ArrayList<Viaje> travelList;
+    ArrayList<Folder> listFolder;
     ConexionSQLiteHelper conn;
+    PlaceAutocompleteFragment autocompleteFragment;
+    TextView placeTextView;
+    public String coordinates;
 
     public TravelListFragment() {
     }
@@ -42,7 +54,8 @@ public class TravelListFragment extends Fragment {
 
         conn = new ConexionSQLiteHelper(getActivity(), "bd_proyecto", null, 1);
 
-        getTravels();
+        getFolders();
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, this.informationList);
 
@@ -52,80 +65,166 @@ public class TravelListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Viaje viajeId = travelList.get(position);
-                ArchivosManager manager = new ArchivosManager();
-                Archivo archivo = manager.getArchivoByViajeId(getActivity(), viajeId.getId());
-
-                new AlertDialog.Builder(getActivity())
-                        .setTitle(viajeId.getLugar())
-                        .setMessage("Total Archivos: "+archivo.getNumeroArchivos() +
-                                "\n("+archivo.getArchivos()+")" ).show();
+                Folder folder = listFolder.get(position);
+                getFolderDataDialog(folder);
             }
         });
-
-
-//          TODO Para insertar
-//        insertarRegistroAleatorio(2, "Jaen", "25/8/2018");
-//        insertarRegistroAleatorio(3, "Albacete", "26/8/2018");
-//        insertarRegistroAleatorio(4, "Murcia", "27/8/2018");
 
         return view;
     }
 
+    public void getFolderDataDialog(final Folder folder)
+    {
+        final AlertDialog.Builder folderDataDialog = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View v = inflater.inflate(R.layout.dialog_folder_data, null);
 
-    private void getTravels() {
+        TextView folderInfo = v.findViewById(R.id.info_folder_text_view);
+        Button showFilesButton = v.findViewById(R.id.show_files_button);
+        Button editTravelButton = v.findViewById(R.id.edit_travel_button);
 
-        SQLiteDatabase db = conn.getReadableDatabase();
-        travelList = new ArrayList<Viaje>();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ StringHelper.TABLA_VIAJES, null);
+        showFilesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        while (cursor.moveToNext()){
-            Viaje viaje = new Viaje();
-            viaje.setId(cursor.getInt(0));
-            viaje.setLugar(cursor.getString(1));
-            String fechaString = cursor.getString(2);
-            viaje.setCoordenadas( cursor.getString(3));
+                new AlertDialog.Builder(getActivity())
+                .setMessage(folder.getFiles())
+                .setNegativeButton("Volver", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
+            }
+        });
 
-//            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-//            Date parsed = null;
-//            try {
-//                parsed = format.parse(fechaString);
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//            java.sql.Date sql = new java.sql.Date(parsed.getTime());
-            viaje.setFecha(fechaString);
-            travelList.add(viaje);
+        editTravelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFormTravelDialog(folder);
+            }
+        });
+
+        folderInfo.setText("Total Archivos: "+ folder.getNumberFiles() + "\n" + "Fecha de descarga: " + folder.getDate());
+        folderDataDialog.setTitle(folder.getName());
+        folderDataDialog.setNegativeButton("Volver", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        folderDataDialog.setView(v);
+        AlertDialog dialog = folderDataDialog.create();
+        dialog.show();
+    }
+
+    public void getFormTravelDialog(final Folder folder)
+    {
+        final AlertDialog.Builder formTravelDialog = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View v = inflater.inflate(R.layout.dialog_travel_form, null);
+
+        final EditText personsTextView = (v.findViewById(R.id.persons_edit_text));
+        final EditText commentsTextView = (v.findViewById(R.id.comments_edit_text));
+
+        placeTextView = v.findViewById(R.id.LugarText);
+        autocompleteFragment = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.fragmentAutocompletar);
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(com.google.android.gms.location.places.Place place) {
+                placeTextView.setText(place.getName());
+                coordinates = place.getLatLng().toString();
+            }
+            @Override
+            public void onError(Status status) {
+                getFragmentManager().beginTransaction().remove(autocompleteFragment).commit();
+            }
+        });
+        formTravelDialog.setTitle(folder.getName());
+
+        formTravelDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                getFragmentManager().beginTransaction().remove(autocompleteFragment).commit();
+                dialog.cancel();
+            }
+        });
+
+        final PlaceManager placeManager = new PlaceManager();
+        final Place place = placeManager.getPlaceByFolderId(getActivity(), folder.getId());
+        final TravelManager travelManager = new TravelManager();
+        final Travel travel = travelManager.gerTravelByFolderID(getActivity(), folder.getId());
+
+
+        if (place.getId() != null && travel.getId() != null) {
+            placeTextView.setText(place.getName());
+            personsTextView.setText(travel.getPeople());
+            commentsTextView.setText(travel.getComments());
         }
 
+            formTravelDialog.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ConexionSQLiteHelper conn = new ConexionSQLiteHelper(getActivity(), "bd_proyecto", null, 1);
+                SQLiteDatabase db = conn.getWritableDatabase();
+
+                if (place.getId() == null && travel.getId() == null) {
+                    Long idViaje = placeManager.saveNewPlace(
+                            placeTextView.getText().toString(),
+                            folder.getId(),
+                            coordinates,
+                            db);
+
+                    Integer viajeId = (int) (long) idViaje.intValue();
+                    travelManager.saveNewTravel(
+                            personsTextView.getText().toString(),
+                            commentsTextView.getText().toString(),
+                            folder.getId(),
+                            viajeId,
+                            db
+                    );
+                }
+                else {
+                    placeManager.editPlace(
+                            placeTextView.getText().toString(),
+                            place.getId(),
+                            coordinates,
+                            db);
+                    travelManager.editTravel(
+                            personsTextView.getText().toString(),
+                            commentsTextView.getText().toString(),
+                            travel.getId(),
+                            db
+                    );
+                }
+                db.close();
+                conn.close();
+                getFragmentManager().beginTransaction().remove(autocompleteFragment).commit();
+            }
+        });
+
+        formTravelDialog.setView(v);
+        AlertDialog dialog = formTravelDialog.create();
+        dialog.show();
+
+    }
+
+    private void getFolders() {
+
+        SQLiteDatabase db = conn.getReadableDatabase();
+        FolderManager folderManager = new FolderManager();
+        this.listFolder = folderManager.getAllFolders(getActivity());
         getInformationList();
     }
 
     private void getInformationList() {
         this.informationList = new ArrayList<String>();
 
-        for (int i = 0; i< travelList.size(); i++){
-            this.informationList.add(this.travelList.get(i).getLugar()+" - "+this.travelList.get(i).getFecha());
+        for (int i = 0; i< this.listFolder.size(); i++){
+            this.informationList.add(this.listFolder.get(i).getName()+" - "+this.listFolder.get(i).getDate());
         }
     }
-
-    /* TODO Eliminar este método*/
-    private void insertarRegistroAleatorio(Integer id, String lugar, String fecha)
-    {
-        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(getActivity(), "bd_proyecto", null, 1);
-
-        SQLiteDatabase db = conn.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(StringHelper.CAMPO_ID, id);
-        values.put(StringHelper.CAMPO_LUGAR, lugar);
-        values.put(StringHelper.CAMPO_FECHA, fecha);
-
-        Long idResultante = db.insert(StringHelper.TABLA_VIAJES, StringHelper.CAMPO_ID, values);
-
-        Toast.makeText(getActivity(), "Id Registro: "+ idResultante, Toast.LENGTH_SHORT).show();
-
-        db.close();
-    }
-
 }

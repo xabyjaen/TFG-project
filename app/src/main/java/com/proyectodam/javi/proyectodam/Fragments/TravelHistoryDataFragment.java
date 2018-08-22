@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.proyectodam.javi.proyectodam.Entity.Archivo;
+import com.proyectodam.javi.proyectodam.Entity.Folder;
 import com.proyectodam.javi.proyectodam.Entity.ConexionSQLiteHelper;
-import com.proyectodam.javi.proyectodam.Entity.Manager.ArchivosManager;
-import com.proyectodam.javi.proyectodam.Entity.Manager.ViajeManager;
-import com.proyectodam.javi.proyectodam.Entity.Viaje;
+import com.proyectodam.javi.proyectodam.Entity.Manager.FolderManager;
+import com.proyectodam.javi.proyectodam.Entity.Manager.PlaceManager;
+import com.proyectodam.javi.proyectodam.Entity.Place;
 import com.proyectodam.javi.proyectodam.R;
 
 import java.util.ArrayList;
@@ -22,8 +22,8 @@ public class TravelHistoryDataFragment extends Fragment {
 
     ListView historyList;
     ArrayList<String> listaInformacion;
-    ArrayList<Viaje> listaViajes;
-    ArrayList<Archivo> listaArchivos;
+    ArrayList<Place> listaPlaces;
+    ArrayList<Folder> listaFolders;
     ConexionSQLiteHelper conn;
 
     public TravelHistoryDataFragment() {
@@ -37,7 +37,7 @@ public class TravelHistoryDataFragment extends Fragment {
 
         conn = new ConexionSQLiteHelper(getActivity(), "bd_proyecto", null, 1);
 
-        consultarArchivos();
+        searchFolders();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listaInformacion);
         historyList.setAdapter(adapter);
@@ -45,14 +45,14 @@ public class TravelHistoryDataFragment extends Fragment {
         return view;
     }
 
-    private void consultarArchivos() {
+    private void searchFolders() {
 
-        listaViajes = new ArrayList<Viaje>();
-        listaArchivos = new ArrayList<Archivo>();
-        ViajeManager viajeManager = new ViajeManager();
-        ArchivosManager archivosManager = new ArchivosManager();
+        listaPlaces = new ArrayList<Place>();
+        listaFolders = new ArrayList<Folder>();
+        PlaceManager placeManager = new PlaceManager();
+        FolderManager folderManager = new FolderManager();
 
-        listaViajes = viajeManager.getAllViajes(getActivity());
-        listaInformacion = archivosManager.getAllArchivosAndLocations(getActivity(), listaViajes);
+        listaPlaces = placeManager.getAllPLaces(getActivity());
+//        listaInformacion = folderManager.getAllFolderAndLocations(getActivity(), listaPlaces);
     }
 }

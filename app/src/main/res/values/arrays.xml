@@ -1,20 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="arrayDevice">
-        <item>a:</item>
-        <item>b:</item>
-        <item>c:</item>
-        <item>d:</item>
-    </string-array>
-    <string-array name="arrayFiles">
-        <item>archivo 1</item>
-        <item>archivo 2</item>
-        <item>archivo 3</item>
-        <item>archivo 4</item>
-        <item>archivo 5</item>
-        <item>archivo 6</item>
-        <item>archivo 7</item>
-        <item>archivo 8</item>
-        <item>archivo 9</item>
-    </string-array>
-</resources>
+<resources></resources>

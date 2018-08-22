@@ -33,9 +33,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".HistoryMainActivity" />
-        <activity android:name=".TransferMainActivity" />
-        <activity android:name=".RegistroActivity" />
-        <activity android:name=".PruebaActivity" />
         <!-- <activity android:name=".purebaAsincrona" /> -->
         <activity android:name=".AsincronaActivity" />
         <!--
@@ -54,7 +51,6 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".AutocompleteActivity" />
-        <activity android:name=".Pruebas.PruebaConexionActivity" />
         <activity android:name=".ConnectionActivity" />
         <activity android:name=".SelectDevicesActivity" />
         <activity android:name=".SelectFilesActivity"></activity>

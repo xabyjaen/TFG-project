@@ -76,11 +76,11 @@ public class ConnectionActivity extends AppCompatActivity implements ExecuteComm
     public void executeCommands(String command, String order)
     {
         if (order ==  null) {
-            executeCommand = new ExecuteCommand(this, this.session, command);
+            executeCommand = new ExecuteCommand(this, this.session, command, this);
             executeCommand.execute();
         }
         else if (order.equals("prepareDeviceSpinners")){
-            executeCommand = new ExecuteCommand(this, this.session, command);
+            executeCommand = new ExecuteCommand(this, this.session, command, this);
             executeCommand.execute();
         }
     }
