@@ -142,7 +142,6 @@ public class TravelListFragment extends Fragment {
                 getFragmentManager().beginTransaction().remove(autocompleteFragment).commit();
             }
         });
-        formTravelDialog.setTitle(folder.getName());
 
         formTravelDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override

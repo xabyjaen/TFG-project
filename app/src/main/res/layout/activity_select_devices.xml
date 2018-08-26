@@ -28,7 +28,7 @@
     <Spinner
         android:id="@+id/device_out_spinner"
         android:layout_width="match_parent"
-        android:textSize="20dp"
+        android:textSize="30dp"
         android:layout_height="100px" />
 
     <TextView
@@ -42,7 +42,7 @@
     <Spinner
         android:id="@+id/device_in_spinner"
         android:layout_width="match_parent"
-        android:textSize="20dp"
+        android:textSize="30dp"
         android:layout_height="100px" />
 
     <Button

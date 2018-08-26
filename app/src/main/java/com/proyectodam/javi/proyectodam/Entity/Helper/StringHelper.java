@@ -70,7 +70,7 @@ public class StringHelper {
     public static final String DISPOSITIVO = "/dev/sd";
     public static final String MONTAR_MEMORIA = "sudo mount ";
     public static final String LISTAR_ARCHIVOS = "find ";
-    public static final String CORTAR_ARCHIVOS = "sudo mv -t ";
+    public static final String CORTAR_ARCHIVOS = "sudo mv ";
     public static final String DESMONTAR_MEMORIA = "sudo umount ";
 
 }

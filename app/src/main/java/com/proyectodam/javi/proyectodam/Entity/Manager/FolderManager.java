@@ -59,14 +59,14 @@ public class FolderManager {
         this.conn = new ConexionSQLiteHelper(context, "bd_proyecto", null, 1);
         SQLiteDatabase db = conn.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + StringHelper.FOLDER_TABLE +
-                " WHERE " + StringHelper.FIELD_ID_PLACE + " = " + folderId, null);
+                " WHERE " + StringHelper.FIELD_ID + " = " + folderId, null);
 
         while (cursor.moveToNext()) {
             folder.setId(cursor.getInt(0));
             folder.setName(cursor.getString(1));
-            folder.setFiles(cursor.getString(2));
-            folder.setNumberFiles(cursor.getInt(3));
-            folder.setDate(cursor.getString(4));
+            folder.setDate(cursor.getString(2));
+            folder.setFiles(cursor.getString(3));
+            folder.setNumberFiles(cursor.getInt(4));
         }
 
         return folder;

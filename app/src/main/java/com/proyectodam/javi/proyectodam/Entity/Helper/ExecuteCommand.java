@@ -2,14 +2,16 @@ package com.proyectodam.javi.proyectodam.Entity.Helper;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Properties;
 
 public class ExecuteCommand extends AsyncTask<String, Void, String> {
 

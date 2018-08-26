@@ -22,6 +22,7 @@ import com.jcraft.jsch.Session;
 import com.proyectodam.javi.proyectodam.Entity.ConexionSQLiteHelper;
 import com.proyectodam.javi.proyectodam.Entity.Helper.ConectionSsh;
 import com.proyectodam.javi.proyectodam.Entity.Helper.ExecuteCommand;
+import com.proyectodam.javi.proyectodam.Entity.Helper.FilesRegex;
 import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
 import com.proyectodam.javi.proyectodam.Entity.Manager.FolderManager;
 import com.proyectodam.javi.proyectodam.Fragments.DatePickerFragment;
@@ -41,6 +42,7 @@ public class SelectFilesActivity extends AppCompatActivity implements ExecuteCom
     ArrayList<String> selectedItems;
     ArrayList<String> transferData;
     String filesSelected = "";
+    String filesToMoveQuery = "";
     Integer numeroArchivos = 0;
     Button transferButton;
     TextView resumeFilesTextView;
@@ -54,9 +56,11 @@ public class SelectFilesActivity extends AppCompatActivity implements ExecuteCom
         setContentView(R.layout.activity_select_files);
         this.filesListView = (ListView) findViewById(R.id.files_list_view);
         this.transferButton = (Button) findViewById(R.id.transfer_button);
+        this.
         transferData = new ArrayList<String>();
         ConnectionRaspberry();
         getExtras();
+
         transferButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,8 +75,13 @@ public class SelectFilesActivity extends AppCompatActivity implements ExecuteCom
         LayoutInflater inflater = this.getLayoutInflater();
         View v = inflater.inflate(R.layout.dialog_form_register, null);
         resumeFilesTextView = v.findViewById(R.id.resumeFiles);
+
+        FilesRegex filesRegex = new FilesRegex(selectedItems);
+        filesToMoveQuery = filesRegex.getQuery();
+
+
         for (int i = 0; i < selectedItems.size(); i++) {
-            filesSelected = filesSelected + selectedItems.get(i) + " ";
+            filesSelected = filesSelected + selectedItems.get(i) + "\n";
         }
         resumeFilesTextView.setText("TOTAL : " + numeroArchivos + "\n");
         folderNameEditText = v.findViewById(R.id.folder_text_view);
@@ -92,16 +101,14 @@ public class SelectFilesActivity extends AppCompatActivity implements ExecuteCom
         FormViajes.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-//                transferData.add(String.valueOf(placeTextView.getText()));
                 transferData.add(String.valueOf(dateEditText.getText()));
-                registerFolder();
-//                executeCommands(StringHelper.CORTAR_ARCHIVOS + filesSelected + StringHelper.CARPETA_USB_B, null);
+                executeCommands(StringHelper.CORTAR_ARCHIVOS + filesToMoveQuery + StringHelper.CARPETA_USB_B, null);
 //                executeCommands(StringHelper.DESMONTAR_MEMORIA + deviceIn, null);
 //                executeCommands(StringHelper.DESMONTAR_MEMORIA + deviceOut, null);
-                finish();
-                connectionSsh.disconnectSession();
-
-                Intent intent = new Intent(SelectFilesActivity.this, MainActivity.class);
+                registerFolder();
+//                finish();
+//
+                Intent intent = new Intent(SelectFilesActivity.this, AfterTransferActivity.class);
                 startActivity(intent);
             }
         });
@@ -147,6 +154,8 @@ public class SelectFilesActivity extends AppCompatActivity implements ExecuteCom
     public void executeCommands(String command, String order)
     {
         if (order ==  null) {
+            boolean bol = session.isConnected();
+
             executeCommand = new ExecuteCommand(this, connectionSsh.getSession(), command, this);
             executeCommand.execute();
         }

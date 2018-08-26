@@ -64,9 +64,10 @@ public class ConectionSsh extends AsyncTask<Void, Void, Session> {
             this.session.setPassword(stringHelper.PASSWORD);
             Properties prop = new Properties();
             prop.put("StrictHostKeyChecking", "no");
+            prop.put("PreferredAuthentications", "password");
             this.session.setConfig(prop);
             try {
-                this.session.connect(10000);
+                this.session.connect(1000000000);
             } catch (Exception e) {
                 String error =  "ERROR: " + e.toString();
             }

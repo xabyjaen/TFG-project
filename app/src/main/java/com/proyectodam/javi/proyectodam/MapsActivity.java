@@ -13,8 +13,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.proyectodam.javi.proyectodam.Entity.Folder;
+import com.proyectodam.javi.proyectodam.Entity.Manager.FolderManager;
 import com.proyectodam.javi.proyectodam.Entity.Manager.PlaceManager;
+import com.proyectodam.javi.proyectodam.Entity.Manager.TravelManager;
 import com.proyectodam.javi.proyectodam.Entity.Place;
+import com.proyectodam.javi.proyectodam.Entity.Travel;
 
 import java.util.ArrayList;
 
@@ -64,19 +68,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String [] lngs = placeManager.getLngs(ltnLng);
         ArrayList<Place> places = new ArrayList<Place>();
         places = placeManager.getAllPLaces(this);
+        FolderManager folderManager = new FolderManager();
+        TravelManager travelManager = new TravelManager();
 
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
 
         for (int i = 0; i<ltnLng.size(); i++){
-//TODO
             String lugar = places.get(i).getName();
-//            String fecha = places.get(i).get();
             float lat = Float.parseFloat(lats[i]);
             float lng = Float.parseFloat(lngs[i]);
-            LatLng marker = new LatLng(lat, lng);
 
-//            mMap.addMarker(new MarkerOptions().position(marker).title(lugar+": "+fecha));
+            Folder folder = folderManager.getFolderById(this, places.get(i).getFolderId());
+            Travel travel = travelManager.gerTravelByFolderID(this, folder.getId());
+            LatLng marker = new LatLng(lat, lng);
+            String contenido =
+                    "<h1>"+ lugar +"<h1>" +
+                    "<div> Quien fue: " + travel.getPeople()  + "<div>" +
+                    "<div> Comentarios: " + travel.getComments()  + "<div>";
+
+
+            mMap.addMarker(new MarkerOptions()
+                    .position(marker)
+                    .title(
+                            lugar + ": " + folder.getDate())
+                    .snippet(contenido)
+            );
         }
     }
 

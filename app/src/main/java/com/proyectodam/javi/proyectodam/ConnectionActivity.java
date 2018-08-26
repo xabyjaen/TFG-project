@@ -90,5 +90,4 @@ public class ConnectionActivity extends AppCompatActivity implements ExecuteComm
         conectionSsh = new ConectionSsh(this);
         conectionSsh.execute();
     }
-
 }

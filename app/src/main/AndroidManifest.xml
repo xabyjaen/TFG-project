@@ -53,7 +53,8 @@
         <activity android:name=".AutocompleteActivity" />
         <activity android:name=".ConnectionActivity" />
         <activity android:name=".SelectDevicesActivity" />
-        <activity android:name=".SelectFilesActivity"></activity>
+        <activity android:name=".SelectFilesActivity" />
+        <activity android:name=".AfterTransferActivity"></activity>
     </application>
 
 </manifest>

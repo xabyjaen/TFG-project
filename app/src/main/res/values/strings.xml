@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="btn_transfer">Transferir files</string>
+    <string name="app_name">Travel Files Transfer</string>
+    <string name="btn_transfer">Transferir archivos</string>
     <string name="btn_trip_">historial</string>
     <string name="btn_history_list">Histórico</string>
     <string name="title_activity_maps">Map</string>
-
 </resources>
