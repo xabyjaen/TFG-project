@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:text="INFO" />
+            android:text="" />
     </LinearLayout>
 
     <LinearLayout
@@ -31,14 +31,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ver archivos" />
+            android:text="@string/dialog_folder_show_files_button" />
 
         <Button
             android:id="@+id/edit_travel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Editar Viaje" />
+            android:text="@string/dialog_folder_edit_files_button" />
     </LinearLayout>
 </LinearLayout>
 

@@ -17,7 +17,7 @@
         android:id="@+id/LugarText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pulsa para añadir el lugar"
+        android:text="@string/dialog_travel_form_place_edit"
         android:textSize="18sp" />
     </LinearLayout>
 
@@ -31,7 +31,7 @@
             android:id="@+id/instructions_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Para editar el lugar con Google Places conéctese a internet y pulse SEARCH" />
+            android:text="@string/dialog_travel_form_instructions" />
 
 
     </LinearLayout>
@@ -58,8 +58,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
-            android:text="Personas" />
+            android:textSize="18sp"
+            android:text="@string/dialog_travel_form_people" />
 
         <EditText
             android:id="@+id/persons_edit_text"
@@ -81,8 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
-            android:text="Notas" />
+            android:textSize="18sp"
+            android:text="@string/dialog_travel_form_comments" />
 
         <EditText
             android:id="@+id/comments_edit_text"

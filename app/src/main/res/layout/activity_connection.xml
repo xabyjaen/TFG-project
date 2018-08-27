@@ -15,13 +15,13 @@
         android:layout_gravity="center"
         android:layout_marginTop="148dp"
         android:gravity="center_vertical|center_horizontal|center"
-        android:text="Conectar a Raspberry" />
+        android:text="@string/connection_button" />
 
     <TextView
         android:id="@+id/connection_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30px"
+        android:layout_margin="30dp"
         android:textAlignment="center"
-        android:text="Para iniciar una transferencia de archivos conectese a la WIFI de la Raspberry y pulse 'CONECTAR A LA RASPBERRY'" />
+        android:text="@string/connection_activity_info" />
 </LinearLayout>

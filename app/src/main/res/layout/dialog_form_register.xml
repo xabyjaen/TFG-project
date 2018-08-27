@@ -9,14 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -27,7 +19,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:focusable="true"
-            android:text="Nombre de la carpeta" />
+            android:text="@string/dialog_register_folder_name" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,7 +36,7 @@
             android:layout_marginTop="20dp"
             android:focusable="false"
             android:inputType="date"
-            android:text="Fecha" />
+            android:text="@string/dialog_register_date" />
 
     </LinearLayout>
 

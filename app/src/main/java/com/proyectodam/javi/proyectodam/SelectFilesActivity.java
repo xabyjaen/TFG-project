@@ -27,7 +27,10 @@ import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
 import com.proyectodam.javi.proyectodam.Entity.Manager.FolderManager;
 import com.proyectodam.javi.proyectodam.Fragments.DatePickerFragment;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SelectFilesActivity extends AppCompatActivity implements ExecuteCommand.AsyncResponseInterface, ConectionSsh.AsyncSessionResponseInterface{
 
@@ -87,6 +90,10 @@ public class SelectFilesActivity extends AppCompatActivity implements ExecuteCom
         folderNameEditText = v.findViewById(R.id.folder_text_view);
 
         dateEditText = v.findViewById(R.id.FechaLugar);
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        dateEditText.setText(dateFormat.format(date));
 
         FormViajes.setTitle("Datos del viaje");
         FormViajes.setView(v);

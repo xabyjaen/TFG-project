@@ -1,7 +1,29 @@
 <resources>
     <string name="app_name">Travel Files Transfer</string>
     <string name="btn_transfer">Transferir archivos</string>
+    <string name="main_activity_instructions">Instrucciones</string>
     <string name="btn_trip_">historial</string>
     <string name="btn_history_list">Histórico</string>
+    <string name="history_activity_where">Donde he estado</string>
+    <string name="select_devices_activity_availables_devices">DISPOSITIVOS DISPONIBLES</string>
+    <string name="select_devices_activity_out_device">Dispositivo de Salida</string>
+    <string name="select_devices_activity_in_device">Dispositivo de Entrada</string>
+    <string name="select_devices_activity_continue_buton">Continuar</string>
+    <string name="select_files_activity_transfer_button">Transferir</string>
     <string name="title_activity_maps">Map</string>
+    <string name="aftersale_text_view">Se está realizando la transferencia de datos, espere a que el
+        dispostivo usb deje de parpadear antes de apagar el dispositivo RASPBERRY</string>
+    <string name="aftersale_button">Volver al inicio</string>
+    <string name="connection_button">Conectar a Raspberry</string>
+    <string name="connection_activity_info">Para iniciar una transferencia de archivos conectese
+        a la WIFI de la Raspberry y pulse 'CONECTAR A LA RASPBERRY'</string>
+    <string name="dialog_folder_show_files_button">Ver archivos</string>
+    <string name="dialog_folder_edit_files_button">Editar Viaje</string>
+    <string name="dialog_register_folder_name">Nombre de la carpeta</string>
+    <string name="dialog_register_date">Fecha</string>
+    <string name="dialog_travel_form_place_edit">Pulsa para añadir el lugar</string>
+    <string name="dialog_travel_form_instructions">Para editar el lugar con Google Places conéctese a internet y pulse SEARCH</string>
+    <string name="dialog_travel_form_people">Personas</string>
+    <string name="dialog_travel_form_comments">Notas</string>
+
 </resources>
