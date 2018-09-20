@@ -59,8 +59,7 @@ public class SelectFilesActivity extends AppCompatActivity implements ExecuteCom
         setContentView(R.layout.activity_select_files);
         this.filesListView = (ListView) findViewById(R.id.files_list_view);
         this.transferButton = (Button) findViewById(R.id.transfer_button);
-        this.
-        transferData = new ArrayList<String>();
+        this.transferData = new ArrayList<String>();
         ConnectionRaspberry();
         getExtras();
 
@@ -110,11 +109,8 @@ public class SelectFilesActivity extends AppCompatActivity implements ExecuteCom
             public void onClick(DialogInterface dialogInterface, int i) {
                 transferData.add(String.valueOf(dateEditText.getText()));
                 executeCommands(StringHelper.CORTAR_ARCHIVOS + filesToMoveQuery + StringHelper.CARPETA_USB_B, null);
-//                executeCommands(StringHelper.DESMONTAR_MEMORIA + deviceIn, null);
-//                executeCommands(StringHelper.DESMONTAR_MEMORIA + deviceOut, null);
                 registerFolder();
-//                finish();
-//
+
                 Intent intent = new Intent(SelectFilesActivity.this, AfterTransferActivity.class);
                 startActivity(intent);
             }
