@@ -1,4 +1,4 @@
-package com.proyectodam.javi.proyectodam.Entity.Helper;
+package com.proyectodam.javi.proyectodam.Helper;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -6,12 +6,9 @@ import android.os.AsyncTask;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Properties;
 
 public class ExecuteCommand extends AsyncTask<String, Void, String> {
 
@@ -75,8 +72,11 @@ public class ExecuteCommand extends AsyncTask<String, Void, String> {
         if (progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
-        if (channel.isConnected()) {
-            channel.disconnect();
+
+        if (channel != null) {
+            if (channel.isConnected()) {
+                channel.disconnect();
+            }
         }
 
         //TODO
@@ -94,11 +94,15 @@ public class ExecuteCommand extends AsyncTask<String, Void, String> {
         if (progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
-        if (channel.isConnected()) {
+
+        if (channel != null) {
+            if (channel.isConnected()) {
+                channel.disconnect();
+            }
             channel.disconnect();
         }
         //TODO
-        channel.disconnect();
+
 //        Toast toast = Toast.makeText(pruebaActivity,
 //                s, Toast.LENGTH_SHORT);
 //

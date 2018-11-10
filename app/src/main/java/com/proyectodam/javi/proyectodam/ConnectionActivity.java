@@ -1,20 +1,16 @@
 package com.proyectodam.javi.proyectodam;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jcraft.jsch.Session;
-import com.proyectodam.javi.proyectodam.Entity.Helper.ConectionSsh;
-import com.proyectodam.javi.proyectodam.Entity.Helper.ExecuteCommand;
-import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
+import com.proyectodam.javi.proyectodam.Helper.ConectionSsh;
+import com.proyectodam.javi.proyectodam.Helper.ExecuteCommand;
+import com.proyectodam.javi.proyectodam.Helper.StringHelper;
 
 public class ConnectionActivity extends AppCompatActivity implements ExecuteCommand.AsyncResponseInterface, ConectionSsh.AsyncSessionResponseInterface{
 
@@ -54,7 +50,7 @@ public class ConnectionActivity extends AppCompatActivity implements ExecuteComm
         this.response = response;
         if(this.response.equals("ERROR")){
 
-            connectionMessage.setText("No se pudo conectar con la Raspberry");
+            connectionMessage.setText(R.string.error_connection);
 
             return;
         }

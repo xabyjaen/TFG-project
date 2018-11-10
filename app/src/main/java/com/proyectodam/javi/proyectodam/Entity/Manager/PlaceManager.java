@@ -5,9 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.proyectodam.javi.proyectodam.Entity.ConexionSQLiteHelper;
-import com.proyectodam.javi.proyectodam.Entity.Folder;
-import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
+import com.proyectodam.javi.proyectodam.Helper.ConexionSQLiteHelper;
+import com.proyectodam.javi.proyectodam.Helper.StringHelper;
 import com.proyectodam.javi.proyectodam.Entity.Place;
 
 import java.util.ArrayList;

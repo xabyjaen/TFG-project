@@ -2,10 +2,12 @@ package com.proyectodam.javi.proyectodam;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -32,7 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
-        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+        int status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(getApplicationContext());
 
         if (status == ConnectionResult.SUCCESS){
 
@@ -42,8 +44,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         else {
-            Dialog dialog = GooglePlayServicesUtil.getErrorDialog(status, (Activity) getApplicationContext(), 10);
-            dialog.show();
+           Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+           intent.putExtra("Error", "Error en al iniciar GoogleMaps");
+           startActivity(intent);
         }
 
     }
@@ -74,26 +77,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
 
-        for (int i = 0; i<ltnLng.size(); i++){
-            String lugar = places.get(i).getName();
-            float lat = Float.parseFloat(lats[i]);
-            float lng = Float.parseFloat(lngs[i]);
 
-            Folder folder = folderManager.getFolderById(this, places.get(i).getFolderId());
-            Travel travel = travelManager.gerTravelByFolderID(this, folder.getId());
-            LatLng marker = new LatLng(lat, lng);
-            String contenido =
-                    "<h1>"+ lugar +"<h1>" +
-                    "<div> Quien fue: " + travel.getPeople()  + "<div>" +
-                    "<div> Comentarios: " + travel.getComments()  + "<div>";
+        if (places.size() != 0) {
+
+            for (int i = 0; i < ltnLng.size(); i++) {
+                String lugar = places.get(i).getName();
+                float lat = Float.parseFloat(lats[i]);
+                float lng = Float.parseFloat(lngs[i]);
+
+                Folder folder = folderManager.getFolderById(this, places.get(i).getFolderId());
+                Travel travel = travelManager.gerTravelByFolderID(this, folder.getId());
+                LatLng marker = new LatLng(lat, lng);
+                String contenido =
+                        lugar + "\n" +
+                                "Personas: " + travel.getPeople() + "\n" +
+                                "Comentarios:" + travel.getComments();
 
 
-            mMap.addMarker(new MarkerOptions()
-                    .position(marker)
-                    .title(
-                            lugar + ": " + folder.getDate())
-                    .snippet(contenido)
-            );
+                mMap.addMarker(new MarkerOptions()
+                        .position(marker)
+                        .title(
+                                lugar + ": " + folder.getName() + "(" + folder.getDate()+")")
+                        .snippet(contenido)
+                );
+            }
         }
     }
 

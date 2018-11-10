@@ -1,4 +1,4 @@
-package com.proyectodam.javi.proyectodam.Entity.Helper;
+package com.proyectodam.javi.proyectodam.Helper;
 
 import java.util.ArrayList;
 

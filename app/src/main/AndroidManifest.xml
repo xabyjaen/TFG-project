@@ -52,7 +52,11 @@
         <activity android:name=".ConnectionActivity" />
         <activity android:name=".SelectDevicesActivity" />
         <activity android:name=".SelectFilesActivity" />
-        <activity android:name=".AfterTransferActivity"></activity>
+        <activity android:name=".AfterTransferActivity" />
+        <activity
+            android:name=".ErrorActivity"
+            android:label="@string/title_activity_error"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

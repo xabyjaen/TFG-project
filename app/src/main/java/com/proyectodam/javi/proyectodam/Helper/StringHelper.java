@@ -1,4 +1,4 @@
-package com.proyectodam.javi.proyectodam.Entity.Helper;
+package com.proyectodam.javi.proyectodam.Helper;
 
 /**
  * Created by javi on 15/03/18.

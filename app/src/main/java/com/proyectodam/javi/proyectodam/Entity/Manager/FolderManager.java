@@ -5,9 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.proyectodam.javi.proyectodam.Entity.Folder;
-import com.proyectodam.javi.proyectodam.Entity.ConexionSQLiteHelper;
-import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
-import com.proyectodam.javi.proyectodam.Entity.Place;
+import com.proyectodam.javi.proyectodam.Helper.ConexionSQLiteHelper;
+import com.proyectodam.javi.proyectodam.Helper.StringHelper;
 
 import java.util.ArrayList;
 
@@ -44,7 +43,6 @@ public class FolderManager {
             folder.setDate(cursor.getString(2));
             folder.setFiles(cursor.getString(3));
             folder.setNumberFiles(cursor.getInt(4));
-
             folderList.add(folder);
         }
         db.close();

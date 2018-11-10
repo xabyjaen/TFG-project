@@ -1,16 +1,13 @@
 package com.proyectodam.javi.proyectodam;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.proyectodam.javi.proyectodam.Controller.HistoryMainActivityController;
-import com.proyectodam.javi.proyectodam.Fragments.TravelListFragment;
+import com.proyectodam.javi.proyectodam.ActivityTools.HistoryMainActivityTools;
 
 public class HistoryMainActivity extends AppCompatActivity {
 
@@ -29,7 +26,7 @@ public class HistoryMainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                HistoryMainActivityController controller= new HistoryMainActivityController(fragmentManager);
+                HistoryMainActivityTools controller= new HistoryMainActivityTools(fragmentManager);
                 controller.getFragment();
             }
         });

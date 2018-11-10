@@ -19,11 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jcraft.jsch.Session;
-import com.proyectodam.javi.proyectodam.Entity.ConexionSQLiteHelper;
-import com.proyectodam.javi.proyectodam.Entity.Helper.ConectionSsh;
-import com.proyectodam.javi.proyectodam.Entity.Helper.ExecuteCommand;
-import com.proyectodam.javi.proyectodam.Entity.Helper.FilesRegex;
-import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
+import com.proyectodam.javi.proyectodam.Helper.ConexionSQLiteHelper;
+import com.proyectodam.javi.proyectodam.Helper.ConectionSsh;
+import com.proyectodam.javi.proyectodam.Helper.ExecuteCommand;
+import com.proyectodam.javi.proyectodam.Helper.FilesRegex;
+import com.proyectodam.javi.proyectodam.Helper.StringHelper;
 import com.proyectodam.javi.proyectodam.Entity.Manager.FolderManager;
 import com.proyectodam.javi.proyectodam.Fragments.DatePickerFragment;
 

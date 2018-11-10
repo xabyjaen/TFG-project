@@ -1,7 +1,6 @@
 package com.proyectodam.javi.proyectodam.Fragments;
 
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,14 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.proyectodam.javi.proyectodam.Entity.Folder;
-import com.proyectodam.javi.proyectodam.Entity.ConexionSQLiteHelper;
-import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
+import com.proyectodam.javi.proyectodam.Helper.ConexionSQLiteHelper;
 import com.proyectodam.javi.proyectodam.Entity.Manager.FolderManager;
 import com.proyectodam.javi.proyectodam.Entity.Manager.PlaceManager;
 import com.proyectodam.javi.proyectodam.Entity.Manager.TravelManager;

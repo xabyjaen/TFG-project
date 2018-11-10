@@ -1,14 +1,12 @@
-package com.proyectodam.javi.proyectodam.Entity.Helper;
+package com.proyectodam.javi.proyectodam.Helper;
 
 import android.os.AsyncTask;
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
-import java.io.Serializable;
 import java.util.Properties;
 
 public class ConectionSsh extends AsyncTask<Void, Void, Session> {
@@ -67,7 +65,7 @@ public class ConectionSsh extends AsyncTask<Void, Void, Session> {
             prop.put("PreferredAuthentications", "password");
             this.session.setConfig(prop);
             try {
-                this.session.connect(1000000000);
+                this.session.connect(20000);
             } catch (Exception e) {
                 String error =  "ERROR: " + e.toString();
             }
@@ -78,16 +76,14 @@ public class ConectionSsh extends AsyncTask<Void, Void, Session> {
         return session;
     }
 
-    public String disconnectSession() {
+    public void disconnectSession() {
 
         try {
-            this.session.disconnect();
 
-            return "Desconectado con éxito";
+            this.session.disconnect();
 
         } catch (Exception e) {
 
-            return "Error al desconectar: " + e;
         }
     }
 

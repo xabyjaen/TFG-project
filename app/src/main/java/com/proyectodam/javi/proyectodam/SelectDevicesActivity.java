@@ -9,10 +9,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.jcraft.jsch.Session;
-import com.proyectodam.javi.proyectodam.Entity.Helper.ConectionSsh;
-import com.proyectodam.javi.proyectodam.Entity.Helper.ExecuteCommand;
-import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
+import com.proyectodam.javi.proyectodam.Helper.StringHelper;
 
 public class SelectDevicesActivity extends AppCompatActivity {
 
@@ -65,32 +62,32 @@ public class SelectDevicesActivity extends AppCompatActivity {
 
     public String[] prepareDevices(){
 
+        try {
+            if (this.devices.toLowerCase().contains("sda1".toLowerCase())) {
+                arrayDevices[0] = StringHelper.DISPOSITIVO + "a1";
+            } else {
+                arrayDevices[0] = "";
+            }
+            if (this.devices.toLowerCase().contains("sdb1".toLowerCase())) {
+                arrayDevices[1] = StringHelper.DISPOSITIVO + "b1";
+            } else {
+                arrayDevices[1] = "";
+            }
+            if (this.devices.toLowerCase().contains("sdc1".toLowerCase())) {
+                arrayDevices[2] = StringHelper.DISPOSITIVO + "c1";
+            } else {
+                arrayDevices[2] = "";
+            }
+            if (this.devices.toLowerCase().contains("sdd1".toLowerCase())) {
+                arrayDevices[3] = StringHelper.DISPOSITIVO + "d1";
+            } else {
+                arrayDevices[3] = "";
+            }
 
-        if (this.devices.toLowerCase().contains("sda1".toLowerCase())){
-            arrayDevices[0] = StringHelper.DISPOSITIVO +"a1";
+        } catch (Exception e) {
+            Intent intent = new Intent(SelectDevicesActivity.this, ErrorActivity.class);
+            startActivity(intent);
         }
-        else{
-            arrayDevices[0] = "";
-        }
-        if (this.devices.toLowerCase().contains("sdb1".toLowerCase())){
-            arrayDevices[1] = StringHelper.DISPOSITIVO +"b1";
-        }
-        else{
-            arrayDevices[1] = "";
-        }
-        if (this.devices.toLowerCase().contains("sdc1".toLowerCase())){
-            arrayDevices[2] = StringHelper.DISPOSITIVO +"c1";
-        }
-        else{
-            arrayDevices[2] = "";
-        }
-        if (this.devices.toLowerCase().contains("sdd1".toLowerCase())){
-            arrayDevices[3] = StringHelper.DISPOSITIVO +"d1";
-        }
-        else{
-            arrayDevices[3] = "";
-        }
-
         return arrayDevices;
     }
 }

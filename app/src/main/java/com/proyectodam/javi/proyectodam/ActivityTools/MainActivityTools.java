@@ -1,12 +1,10 @@
-package com.proyectodam.javi.proyectodam.Controller;
+package com.proyectodam.javi.proyectodam.ActivityTools;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
-import com.proyectodam.javi.proyectodam.MainActivity;
-
-public class MainActivityController {
+public class MainActivityTools {
 
     public final void getAlertDialog(Activity activity)
     {

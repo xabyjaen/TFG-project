@@ -1,11 +1,11 @@
-package com.proyectodam.javi.proyectodam.Entity;
+package com.proyectodam.javi.proyectodam.Helper;
 
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.proyectodam.javi.proyectodam.Entity.Helper.StringHelper;
+import com.proyectodam.javi.proyectodam.Helper.StringHelper;
 
 public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
